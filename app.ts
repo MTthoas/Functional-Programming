@@ -1,6 +1,8 @@
 import { Exercices } from "./src/exos";
+import { ExosBelt } from "./src/exosBelt";
 
 const exos = new Exercices();
+const exosBelt = new ExosBelt();
 
 console.log("doubleValues : ", exos.doubleValues([1, 2, 3, 4, 5])); // [2, 4, 6, 8, 10]
 console.log("evenNumbers : ", exos.evenNumbers([1, 2, 3, 4, 5])); // [2, 4]
@@ -20,3 +22,6 @@ console.log("isPrime for 5", exos.isPrime(5));
 const multiplier = exos.createMultiplier(10, 2);
 console.log("multiplier", multiplier());
 console.log("multiplier", multiplier());
+
+console.log("Pipe", exosBelt.Pipe());
+console.log("PipeTransform", exosBelt.PipeTransform());
