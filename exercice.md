@@ -22,14 +22,14 @@ Exercices Moyens
 
 🟢 Pure Functions: Écrire une fonction isPrime qui prend un nombre et retourne true si le nombre est premier. Assurez-vous que cette fonction est pure.
 
-Pipe (ts-belt): Écrire une chaîne de transformations en utilisant pipe de ts-belt pour transformer un tableau de nombres : filtrer les nombres pairs, les doubler, puis calculer leur somme.
+🟢 Pipe (ts-belt): Écrire une chaîne de transformations en utilisant pipe de ts-belt pour transformer un tableau de nombres : filtrer les nombres pairs, les doubler, puis calculer leur somme.
 
 Exercices Avancés
-Currying: Écrire une fonction curriedAdd qui prend un nombre et retourne une fonction qui prend un autre nombre et retourne leur somme. Utiliser cette fonction pour calculer des sommes de 10 et 20.
+🟢Currying: Écrire une fonction curriedAdd qui prend un nombre et retourne une fonction qui prend un autre nombre et retourne leur somme. Utiliser cette fonction pour calculer des sommes de 10 et 20.
 
-Map, Filter & Reduce: Écrire une fonction processData qui prend un tableau d'objets avec une propriété value, filtre les objets avec une valeur supérieure à 10, double ces valeurs, et calcule la somme totale des valeurs en utilisant map, filter et reduce.
+🟢Map, Filter & Reduce: Écrire une fonction processData qui prend un tableau d'objets avec une propriété value, filtre les objets avec une valeur supérieure à 10, double ces valeurs, et calcule la somme totale des valeurs en utilisant map, filter et reduce.
 
-Closure with State: Écrire une fonction counter qui retourne un objet avec deux méthodes : increment et getValue. increment augmente un compteur interne, et getValue retourne la valeur actuelle du compteur.
+🟢Closure with State: Écrire une fonction counter qui retourne un objet avec deux méthodes : increment et getValue. increment augmente un compteur interne, et getValue retourne la valeur actuelle du compteur.
 
 Pure Functions with Objects: Écrire une fonction mergeObjects qui prend deux objets et retourne un nouvel objet avec les propriétés combinées. Assurez-vous que cette fonction est pure.
 
