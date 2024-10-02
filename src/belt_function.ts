@@ -1,15 +1,5 @@
 import { A, O, pipe, F, R } from "@mobily/ts-belt";
 
-interface User {
-    name: string;
-}
-
-const ListProduct = [
-    { name: 3, price: 1000, inStock: 3 },
-    { name: 3, price: 1000, inStock: 3 },
-    { name: 3, price: 1000, inStock: 3 },
-];
-
 export class Belt_Function {
     constructor() { }
 

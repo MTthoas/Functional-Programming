@@ -1,6 +1,6 @@
 import { Belt_Options } from "./belt_option";
 import { Belt_Function } from "./belt_function";
-import { Belt_Array } from "./belt_array";
+import { Belt_Array, Product } from "./belt_array";
 import { Belt_Closure } from "./belt_closure";
 import { Belt_Dict } from "./belt_dict";
 import { Belt_Result } from "./belt_result";
@@ -59,6 +59,22 @@ async function runTasks() {
     console.log("ArrayFn16", BeltArray.ArrayFn16());
     console.log("ArrayFn19", BeltArray.ArrayFn19());
     console.log("ArrayFn20", BeltArray.ArrayFn20());
+    console.log("ArrayFn22", BeltArray.ArrayFn22());
+    console.log("ArrayFn23", BeltArray.ArrayFn23());
+
+    const filterCondition = (product: Product) => product.inStock && product.price > 50;
+    console.log("ArrayFn24", BeltArray.ArrayFn24([{ name: "Monitor", price: 20, inStock: true }, { name: "Monitor", price: 20, inStock: true }], filterCondition));
+
+    const conditions = [
+        (product: Product) => product.price > 50, // Condition 1: Price greater than 50
+        (product: Product) => product.inStock,    // Condition 2: Product is in stock
+    ];
+
+    console.log("ArrayFn27", BeltArray.ArrayFn27(conditions));
+    const reducer = (acc: number, product: Product) => acc + product.price;
+    console.log("ArrayFn28", BeltArray.ArrayFn28([{ name: "Monitor", price: 20, inStock: true }, { name: "Monitor", price: 20, inStock: true }], reducer, 0));
+    const discountCriteria = (product: Product) => product.price > 50;
+    console.log("ArrayFn30", BeltArray.ArrayFn30([{ name: "Monitor", price: 20, inStock: true }, { name: "Monitor", price: 20, inStock: true }], discountCriteria, 10));
 
     // Closure exos
     const counter = ClosureInstance.createCounter();

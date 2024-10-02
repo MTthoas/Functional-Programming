@@ -1,14 +1,22 @@
 import { A, O, N, pipe } from "@mobily/ts-belt";
 
-type Product = {
+export type Product = {
     name: string;
     price: number;
     inStock: boolean;
 };
 
+interface ProductExtended extends Omit<Product, 'inStock'> {
+    name: string;
+    price: number;
+    category: string;
+    quantity: number;
+};
+
 export class Belt_Array {
     private products: Product[];
     private newProducts: Product[];
+    private productExtended: ProductExtended[];
     constructor() {
         this.products = [
             { name: "oranges", price: 100, inStock: true },
@@ -22,6 +30,15 @@ export class Belt_Array {
         this.newProducts = [
             { name: "chili", price: 100, inStock: true },
             { name: "tomato", price: 0, inStock: false },
+        ];
+
+        this.productExtended = [
+            { name: "oranges", price: 100, category: 'Fruit', quantity: 2 },
+            { name: "bananas", price: 0, category: 'Fruit', quantity: 3 },
+            { name: "apples", price: 50, category: 'Fruit', quantity: 4 },
+            { name: "pears", price: 0, category: 'Fruit', quantity: 5 },
+            { name: "babies", price: 30, category: 'Fruit', quantity: 6 },
+            { name: "planes", price: 1000, category: 'Toys', quantity: 7 },
         ];
     }
     // Exercice 1: Vérifier si tous les produits sont en stock et leur nombre. 
@@ -215,6 +232,79 @@ export class Belt_Array {
     public ArrayFn20 = () => {
         return A.repeat(3, this.products[0])
     }
+
+    //  Exercice 22 : groupe par catégorie, et calculer le price * quantity pour chaque catégorie
+    public ArrayFn22 = () => {
+        // Step 1: Group products by category
+        const groupedByCategory = A.groupBy(this.productExtended, (product) => product.category);
+
+        // Step 2: Calculate total value (price * quantity) for each category
+        const totalByCategory = Object.entries(groupedByCategory).map(([category, products]) => {
+            const totalValue = this.productExtended.reduce((acc, product) => acc + (product.price * product.quantity), 0);
+            return { category, totalValue };
+        });
+
+        return totalByCategory;
+    }
+
+    //  Exercice 23: Générer un rapport des produits groupés par disponibilité et triés par prixObjectif : Tu veux créer un rapport des produits séparés en deux groupes : en stock et hors stock. Dans chaque groupe, les produits doivent être triés par prix croissant.
+    public ArrayFn23 = () => {
+        const groupedByStock = A.groupBy(this.products, (product) => product.inStock ? "inStock" : "outOfStock");
+
+        const sortedInStock = A.sortBy(groupedByStock.inStock ?? [], (product) => product.price);
+        const sortedOutOfStock = A.sortBy(groupedByStock.outOfStock ?? [], (product) => product.price);
+
+        return {
+            inStock: sortedInStock,
+            outOfStock: sortedOutOfStock
+        };
+    }
+
+    // Exercice 24: // écris une fonction calculateTotalPrice qui prend une liste et une fonction de filtre
+    public ArrayFn24 = (products: Product[], filter: (product: Product) => boolean) => {
+        return this.products.filter(filter).reduce((acc, product) => acc + product.price, 0);
+    }
+
+    // // Exercice 27: Créer un tableau de produits répondant à plusieurs critères définis par des fonctionsObjectif : Tu dois recevoir une série de fonctions comme argument qui définissent des critères de sélection. Ensuite, tu dois filtrer et retourner une nouvelle liste de produits qui satisfont tous les critères.Utilise Array.reduce (pour vérifier que chaque produit satisfait à toutes les fonctions de condition passées en argument, et les ajouter à une nouvelle liste).
+    public ArrayFn27 = (conditions: Array<(product: Product) => boolean>) => {
+        // Step 1: Use `reduce` to filter products based on all conditions
+        return A.reduce(
+            this.products,
+            (acc: Product[], product: Product) => {
+                // Check if product satisfies all conditions
+                const satisfiesAllConditions = conditions.every((condition) => condition(product));
+
+                // If it does, add it to the accumulator (filtered products list)
+                if (satisfiesAllConditions) {
+                    acc.push(product);
+                }
+                return acc;
+            },
+        );
+    }
+
+    // Exercice 28: fais une fonction qui prend un tableau de produits et une fonction de réduction et retourne le résultat de la réduction
+    public ArrayFn28 = (products: Product[], reducer: (acc: number, product: Product) => number, initialValue: number) => {
+        return products.reduce(reducer, initialValue);
+    }
+
+    // Exercice 30: Appliquer des réductions de prix en fonction de critères dynamiquesObjectif : Tu reçois une fonction qui définit le critère de réduction, ainsi qu'un pourcentage de réduction. Tu dois appliquer cette réduction aux produits qui répondent aux critères et calculer le total des prix après réduction.Utilise Array.reduce (pour vérifier si un produit satisfait aux critères de réduction, appliquer la réduction et accumuler le prix total).
+    public ArrayFn30 = (products: Product[], criteria: (product: Product) => boolean, discount: number) => {
+        // Step 1: Use `reduce` to apply discount to products based on criteria
+        return products.reduce((acc, product) => {
+            // Check if product satisfies criteria
+            if (criteria(product)) {
+                // Apply discount
+                const discountedPrice = product.price - (product.price * discount);
+                return acc + discountedPrice;
+            }
+            return acc + product.price;
+        }, 0);
+    }
+
+
+
+
 
 
 
