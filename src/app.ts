@@ -34,15 +34,18 @@ async function runTasks() {
     console.log("optionFn5", BeltOptions.optionFn5()); // `await` nécessaire ici
     console.log("optionFn6", await BeltOptions.optionFn6());
     console.log("optionFn7", BeltOptions.optionFn7());
+    console.log("optionFn10", BeltOptions.optionFn10());
 
     // Functions exos
-    console.log("functionFn1", BeltFunctions.functionFn1());
+    console.log("\nfunctionFn1", BeltFunctions.functionFn1());
     console.log("functionFn2", BeltFunctions.functionFn2());
     console.log("functionFn3", BeltFunctions.functionFn3()()());
+    console.log("functionFn4", BeltFunctions.functionFn4());
     console.log("functionFn7", BeltFunctions.functionFn7());
 
+
     // Array exos
-    console.log("ArrayFn1", BeltArray.ArrayFn1());
+    console.log("\nArrayFn1", BeltArray.ArrayFn1());
     console.log("ArrayFn2", BeltArray.ArrayFn2());
     console.log("ArrayFn3", BeltArray.ArrayFn3({ name: "Monitor", price: 20, inStock: true }));
     console.log("ArrayFn4", BeltArray.ArrayFn4(products, products2));
@@ -78,30 +81,43 @@ async function runTasks() {
 
     // Closure exos
     const counter = ClosureInstance.createCounter();
-    console.log("closureFn1", counter());
-    console.log("closureFn2", counter());
-
+    console.log("\nclosureEXO1-Fn1", counter());
+    console.log("closureEXO1-Fn2", counter());
     const multiply = ClosureInstance.createMultiplier(2);
-    console.log("closureFn3", multiply(3));
-    console.log("closureFn4", multiply(4));
-    console.log("closureFn5", multiply(5));
-
+    console.log("closureEXO2-Fn3", multiply(3));
+    console.log("closureEXO2-Fn4", multiply(4));
+    console.log("closureEXO2-Fn5", multiply(5));
     const applyOperation = ClosureInstance.applyOperation((a, b) => a + b);
-    console.log("closureFn6", applyOperation(2, 3));
-    console.log("closureFn7", applyOperation(4, 5));
+    console.log("closureEXO3-Fn6", applyOperation(2, 3));
+    console.log("closureEXO3-Fn7", applyOperation(4, 5));
+    const slowFunction = (n: number) => {
+        console.log("Slow function called with", n);
+        return n * 2;
+    };
+    const memoizedFunction = ClosureInstance.memoize(slowFunction);
+    console.log("closureEXO4-Fn8", memoizedFunction(2));
+    console.log("closureEXO4-Fn9", memoizedFunction(2));
+    console.log("closureEXO4-Fn10", memoizedFunction(3));
+
 
     // Dict exos
-    console.log("dictFn1", BeltDict.DictFn1());
-    console.log("dictFn3", BeltDict.DictFn3());
-    console.log("dictFn4", BeltDict.DictFn4());
-    console.log("dictFn6", BeltDict.DictFn6());
-    console.log("dictFn7", BeltDict.DictFn7());
-    console.log("dictFn8", BeltDict.DictFn8());
+    console.log("\ndictEXO1-Fn1", BeltDict.DictFn1());
+    console.log("dictEXO3-Fn3", BeltDict.DictFn3());
+    console.log("dictEXO4-Fn4", BeltDict.DictFn4());
+    console.log("dictEXO6-Fn6", BeltDict.DictFn6());
+    console.log("dictEXO7-Fn7", BeltDict.DictFn7());
+    console.log("dictEXO8-Fn8", BeltDict.DictFn8());
+    console.log("dictEXO10-Fn10", BeltDict.DictFn10());
+    console.log("dictEXO12-Fn12", BeltDict.DictFn12());
+    console.log("dictEXO14-Fn14", BeltDict.DictFn14());
+    console.log("dictEXO15-Fn15", BeltDict.DictFn15());
+
 
     // Result exos
-    console.log("resultFn1", BeltResult.ResultFn1());
+    console.log("\nresultFn1", BeltResult.ResultFn1());
     console.log("resultFn2", BeltResult.ResultFn2());
     console.log("resultFn4", BeltResult.ResultFn4());
+    console.log("resultFn5", BeltResult.resultFn5());
 
 }
 

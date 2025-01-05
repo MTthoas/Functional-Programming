@@ -31,4 +31,18 @@ export class Belt_Closure {
     public applyOperation(operation: (a: number, b: number) => number) {
         return (a: number, b: number) => operation(a, b);
     }
+
+    // EXO4 : Crée une fonction memoize qui prend une fonction lente en paramètre
+    // et retourne une version mémorisée de cette fonction.
+    // La fonction mémorisée doit stocker les résultats des appels précédents dans une closure.
+    public memoize(slowFunction: (n: number) => number) {
+        let cache: { [key: number]: number } = {};
+        return (n: number) => {
+            if (cache[n] === undefined) {
+                cache[n] = slowFunction(n);
+            }
+            return cache[n];
+        }
+    }
+
 }

@@ -20,10 +20,12 @@ export class Belt_Dict {
     private objf: Object;
     private objf2: ObjectCategory;
     private objf3: ObjectWithALotOfProperties
+    private objf15: Object
     constructor() {
         this.objf = { name: "Laptop", price: 1000, stock: true };
         this.objf2 = { name: "Laptop", price: 1000, stock: true, category: "Electronics" };
         this.objf3 = { name: "Laptop", price: 1000, stock: true, category: "Electronics", brand: "Apple", processor: "M1" };
+        this.objf15 = { name: "Laptop", price: 1001, stock: true };
     }
 
     // Exercice 1: Supprimer une clé d'un objet avec deleteKey.
@@ -62,6 +64,34 @@ export class Belt_Dict {
     public DictFn8 = () => {
         const newObj = D.update(this.objf, "price", () => 2000);
         return D.get(this.objf, "price") !== D.get(newObj, "price") ? "Les prix sont différents" : "Les prix sont identiques";
+    };
+
+    // Exercice 10: Créer un objet vide, puis lui ajouter la clé name avec la valeur 'Laptop'.
+    public DictFn10 = () => {
+        const newObj: Object = {
+            name: "",
+            price: 0,
+            stock: false
+        };
+        return D.set(newObj, "name", "Laptop");
+    }
+
+    // Exercice 12: utiliser mapWithKey pour ajouter le prefixe "pref_" aux clés de l'objet
+    public DictFn12 = () => {
+        return D.mapWithKey(this.objf, (key, value) => [`pref_${key}`, value]);
+    };
+
+    // Exercice 14: Modifier la valeur d'une propriété spécifiqueFonctions à utiliser : prop, setObjectif : Utiliser prop pour obtenir la valeur de la clé 'price', 
+    //puis utiliser set pour la modifier et vérifier le changement.
+    public DictFn14 = () => {
+        const price = D.prop(this.objf, "price");
+        const newObj = D.set(this.objf, "price", price + 100);
+        return newObj;
+    };
+
+    // Exercice 15: créer un object en rejettant les keys dont de obj dont les valeurs ne sont pas égals à 1000.
+    public DictFn15 = () => {
+        return D.reject(this.objf15, value => value !== 1000);
     };
 
 }

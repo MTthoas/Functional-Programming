@@ -1,7 +1,19 @@
-import { A, O, pipe, F, R } from "@mobily/ts-belt";
+import { A, O, pipe, F, R, S, N } from "@mobily/ts-belt";
+
+export type User = {
+    name: string;
+}
 
 export class Belt_Function {
-    constructor() { }
+
+    private users: User[];
+    constructor() {
+        this.users = [
+            { name: "Joe" },
+            { name: "Alice" },
+            { name: "Bob" },
+        ];
+    }
 
     // Exercice 1: Exécuter une fonction après plusieurs appelsFonctions à utiliser : after, always, identity
     // Objectif : Crée une fonction qui retourne toujours 'Appel réussi' après avoir été appelée 3 fois,
@@ -46,6 +58,21 @@ export class Belt_Function {
         return identity
     }
 
+    // comprendre
+    // pipe(
+    //   '{"name": "Joe"}',
+    //   F.tryCatch<string, User>(JSON.parse),
+    //   R.map(user => user.name),
+    //   R.getWithDefault('oops'),
+    // ) // → 'Joe' 
+    // Ce pipe permet de parser un JSON, de récupérer le nom de l'utilisateur, et de retourner 'oops' si une erreur survient.
+    public functionFn4 = () => {
+        const tryCatch = F.tryCatch<string, User>(JSON.parse);
+        const map = R.map(tryCatch);
+        const getWithDefault = R.getWithDefault('oops');
+        return getWithDefault
+    }
+
     // Exercice 7: crée une fonction utilisant une close qui prend un argument, la première fois qu'on l'utilise elle retourne "One shot" puis ensuite elle retourne "Too late" de manière fonctionnel
     public functionFn7 = () => {
         const oneShot = F.once(() => 'One shot');
@@ -54,6 +81,13 @@ export class Belt_Function {
         return identity
     }
 
-
+    // Exercice 8: Forcer une valeur à un type donné et vérifier l'égalitéFonctions à utiliser : coerce, equals, identityObjectif : 
+    // Convertis une chaîne '42' en un nombre, puis vérifie si elle est égale à 42. Si égalité, affiche 'Valeurs égales'.Données :
+    public functionFn8 = () => {
+        const coerce = (value: string): number => parseInt(value, 10) ?? 0; // Convertit '42' en 42
+        const equals = F.equals(42); // Vérifie l'égalité avec 42
+        const result = equals(coerce('42')); // Vérifie si '42' converti est égal à 42
+        return result ? 'Valeurs égales' : 'Valeurs différentes';
+    }
 
 }
